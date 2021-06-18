@@ -2,6 +2,8 @@ package com.example.projectcoursesmonitoringbackend.controller;
 
 import com.example.projectcoursesmonitoringbackend.dto.CourseCardDTO;
 import com.example.projectcoursesmonitoringbackend.dto.CourseDTO;
+import com.example.projectcoursesmonitoringbackend.dto.CourseGradeDTO;
+import com.example.projectcoursesmonitoringbackend.dto.ThemeDTO;
 import com.example.projectcoursesmonitoringbackend.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,5 +33,17 @@ public class CourseController {
     public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id) {
         CourseDTO courseDTO = courseService.getCourseById(id);
         return new ResponseEntity<>(courseDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/grade")
+    public ResponseEntity<?> createGrade(@RequestBody CourseGradeDTO gradeDTO) {
+        courseService.createGrade(gradeDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/themes")
+    public ResponseEntity<List<ThemeDTO>> getAllThemes() {
+        List<ThemeDTO> themes = courseService.getAllThemes();
+        return new ResponseEntity<>(themes, HttpStatus.OK);
     }
 }

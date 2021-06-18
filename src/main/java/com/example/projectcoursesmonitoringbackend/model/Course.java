@@ -38,4 +38,17 @@ public class Course {
     private Date started;
     private Date finished;
 
+    private String previewDescription;
+    private String fullDescription;
+
+    private String iconName;
+
+    @OneToMany(mappedBy = "course")
+    private List<CourseRequirement> requirements;
+
+    @OneToMany(mappedBy = "course")
+    private List<Video> videos;
+
+    @OneToMany(mappedBy = "course")
+    private List<CourseGrade> grades;
 }

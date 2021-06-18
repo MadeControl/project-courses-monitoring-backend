@@ -18,7 +18,7 @@ public class User {
     @Column(name = "user_id")
     private long id;
     @Column(unique = true)
-    private String login;
+    private String email;
     private String password;
     private String firstname;
     private String lastname;
@@ -40,4 +40,6 @@ public class User {
 
     private Date created;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<CourseGrade> grades;
 }

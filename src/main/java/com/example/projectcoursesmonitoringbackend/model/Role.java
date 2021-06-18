@@ -1,7 +1,12 @@
 package com.example.projectcoursesmonitoringbackend.model;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
 
-    STUDENT, TEACHER, ADMIN
+public enum Role implements GrantedAuthority {
+    STUDENT, TEACHER, ADMIN;
 
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
